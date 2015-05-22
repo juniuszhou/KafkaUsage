@@ -7,7 +7,7 @@ import org.I0Itec.zkclient.ZkClient
 
 import scala.concurrent.{ExecutionContext, Future}
 import ExecutionContext.Implicits.global
-import scala.util.Success
+import scala.util.{Failure, Success}
 
 /**
  * all create delete and list commands are console tool. no return value.
@@ -51,8 +51,16 @@ object CreateTopic {
       TopicCommand.deleteTopic(zkClient, topicOps)
     }
 
-    val res = list
+    val res = create("test")
+    println("start")
 
+    // if not set timeout, then future will no response.
+    res onComplete {
+      case Success(_) => println("topic created")
+      case Failure(e) => e.printStackTrace()
+    }
+
+    /*
     res onSuccess {
       case _ => println("topic created")
     }
@@ -60,8 +68,9 @@ object CreateTopic {
     res onFailure {
       case _ => println("failure")
     }
+    */
 
-
-    Thread.sleep(1000)
+    Thread.sleep(100000)
+    println("over")
   }
 }
