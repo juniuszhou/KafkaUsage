@@ -36,6 +36,14 @@ of ordered disc access.
 
 
 
+#### kafka.javaapi.consumer.ConsumerConnector
+
+connector actual provide a higher level api to set the decoder for key and value.
+
+def createMessageStreams[K, V](topicCountMap : scala.collection.Map[scala.Predef.String, scala.Int],
+ keyDecoder : kafka.serializer.Decoder[K],
+ valueDecoder : kafka.serializer.Decoder[V])
+ : scala.collection.Map[scala.Predef.String, scala.List[kafka.consumer.KafkaStream[K, V]]]
 
 
 

@@ -13,6 +13,7 @@ object MyStreamConsumer {
     props.put("metadata.broker.list", "localhost:9092")
     val consumerConfig = new ConsumerConfig(props)
     val connector = Consumer.create(consumerConfig)
+    //Consumer.createJavaConsumerConnector()
 
     // create stream
     val str = connector.createMessageStreams(Map[String, Int]("test", 4))
