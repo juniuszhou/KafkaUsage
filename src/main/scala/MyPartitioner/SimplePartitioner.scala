@@ -3,9 +3,6 @@ package MyPartitioner
 import kafka.javaapi.producer.Producer
 import kafka.producer.{DefaultPartitioner, KeyedMessage, ProducerConfig}
 
-/**
- * Created by juzhou on 5/22/2015.
- */
 object SimplePartitioner {
   def main(args: Array[String]) = {
 

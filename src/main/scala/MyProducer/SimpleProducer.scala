@@ -11,18 +11,21 @@ object SimpleProducer {
   def main(args: Array[String]) = {
 
     val props = new java.util.Properties()
-    props.put("metadata.broker.list", "localhost:9092")
+    props.put("metadata.broker.list", "127.0.0.1:9092")
+
+    //props.put
     val config = new ProducerConfig(props)
 
-    val prod = new Producer[String, String](config)
+    val prod = new Producer[Array[Byte], Array[Byte]](config)
 
     val topic = "test"
 
-    val key = "127.0.0.1"
+    val key = "I am the key"
     val msg = " I am the message"
-    val data = new KeyedMessage[String, String](topic, key, msg)
+    val data = new KeyedMessage[Array[Byte], Array[Byte]](topic, key.getBytes, msg.getBytes)
 
     prod.send(data)
+    Thread.sleep(100000)
     prod.close
   }
 }

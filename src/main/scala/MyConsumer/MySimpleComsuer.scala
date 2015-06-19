@@ -1,12 +1,13 @@
 package MyConsumer
 
+import java.util
+
 import kafka.api._
 import kafka.common.TopicAndPartition
 import kafka.consumer.SimpleConsumer
 import kafka.message.ByteBufferMessageSet
 
 import scala.collection.immutable.Map
-
 /**
  * Created by junius on 15-5-18.
  */
@@ -26,9 +27,13 @@ object MySimpleComsuer {
     val partition = 1
 
     def callFetch() {
-      val tp = TopicAndPartition(topic, partition)
-      val info = PartitionFetchInfo(0, 100) // offset and size
-      val request = new FetchRequest(requestInfo = Map[TopicAndPartition, PartitionFetchInfo](tp, info))
+      val tp = new TopicAndPartition(topic, partition)
+      val info = new PartitionFetchInfo(0, 100) // offset and size
+
+      val para = Map[TopicAndPartition, PartitionFetchInfo](tp -> info)
+
+      val request = new FetchRequest(requestInfo = para)
+
       val response : FetchResponse  = consumer.fetch(request)
       val msgSet = response.messageSet(topic, partition)
       msgSet.foreach(msgAndOffset =>
@@ -39,7 +44,7 @@ object MySimpleComsuer {
       val tp = TopicAndPartition(topic, partition)
       val info = PartitionOffsetRequestInfo(0, 100) // time and maxNumOffsets
 
-      val offetRequest = new OffsetRequest(requestInfo = Map[TopicAndPartition, PartitionOffsetRequestInfo](tp, info))
+      val offetRequest = new OffsetRequest(requestInfo = Map[TopicAndPartition, PartitionOffsetRequestInfo](tp -> info))
 
       val response = consumer.getOffsetsBefore(offetRequest)
       val msgSet = response.partitionErrorAndOffsets

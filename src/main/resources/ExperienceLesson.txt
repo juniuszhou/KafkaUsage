@@ -4,3 +4,6 @@ http://blog.cloudera.com/blog/2014/09/apache-kafka-for-beginners/
 #### how to decide number of topic and partition.
 http://blog.confluent.io/2015/03/12/how-to-choose-the-number-of-topicspartitions-in-a-kafka-cluster/
 
+
+
+https://issues.apache.org/jira/browse/KAFKA-899

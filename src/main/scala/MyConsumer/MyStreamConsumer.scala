@@ -16,7 +16,7 @@ object MyStreamConsumer {
     //Consumer.createJavaConsumerConnector()
 
     // create stream
-    val str = connector.createMessageStreams(Map[String, Int]("test", 4))
+    val str = connector.createMessageStreams(Map[String, Int]("test" -> 4))
 
   }
 }

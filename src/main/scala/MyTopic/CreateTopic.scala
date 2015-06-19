@@ -70,7 +70,7 @@ object CreateTopic {
     }
     */
 
-    Thread.sleep(100000)
+    Thread.sleep(10000000)
     println("over")
   }
 }
