@@ -37,3 +37,13 @@ bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic test
 #### create a consumer
 
 
+#### check zk replication status
+zookeeper-shell.sh 127.0.0.1:2181
+ls /brokers/kafka-spout
+get /brokers/kafka-spout/partition_0
+
+then we can get offset for each partition of each topic.
+
+
+
+

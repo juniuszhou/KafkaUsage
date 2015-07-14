@@ -17,6 +17,8 @@ object CreateTopic {
   def main(args: Array[String]) {
     def create(topicName: String): Future[Unit] = Future {
       val zkClient = new ZkClient("localhost:2181")
+      // for major configuration, use -- and parameter name directly.
+      // other config like --config max.message.bytes=64000 --config flush.messages=1
       val topicOps = new TopicCommandOptions(Array[String](
         "--create",
         "--topic", topicName,
@@ -35,6 +37,7 @@ object CreateTopic {
       TopicCommand.deleteTopic(zkClient, topicOps)
     }
 
+    // simple list all topic
     def list : Future[Unit] = Future {
       val zkClient = new ZkClient("localhost:2181")
       val topicOps = new TopicCommandOptions(Array[String]("--list"))

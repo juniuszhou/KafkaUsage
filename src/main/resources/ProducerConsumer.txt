@@ -34,6 +34,3 @@ group to queue the messages.
 just available in the same partition of a topic.
 
 
-#### kafka also need zk for HA
-it may put offset into zk for HA. maybe for each topic, each partition.
-
