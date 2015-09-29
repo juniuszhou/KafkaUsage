@@ -12,6 +12,8 @@ import scala.util.{Failure, Success}
 /**
  * all create delete and list commands are console tool. no return value.
  * the output is shown in console.
+ *
+ * and we should use lower api to do it instead of
  */
 object CreateTopic {
   def main(args: Array[String]) {

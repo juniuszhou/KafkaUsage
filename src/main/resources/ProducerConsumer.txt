@@ -30,6 +30,15 @@ one group to sub messages of a certain topic. then sub instances within the same
 group to queue the messages.
 
 
+## two different consumer API
+1. High level stream. just to get the message from topic and partition.
+ignore things like offset
+it is implemented via create connector and then create several streams
+based on parallelism.
+
+2. Low level stream. to control offset and others.
+it is wrapped in simpleConsumer.
+
 #### the guarantee of order of message
 just available in the same partition of a topic.
 

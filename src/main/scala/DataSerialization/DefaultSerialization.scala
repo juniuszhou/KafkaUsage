@@ -3,7 +3,7 @@ package DataSerialization
 import kafka.serializer.{DefaultDecoder, DefaultEncoder}
 
 /**
- * Created by juzhou on 5/22/2015.
+ * Default encoder and decoder just get/set the input, it is useless.
  */
 object DefaultSerialization {
   def main(args: Array[String]) {

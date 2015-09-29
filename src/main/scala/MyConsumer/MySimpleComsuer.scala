@@ -8,10 +8,6 @@ import kafka.consumer.SimpleConsumer
 import kafka.message.ByteBufferMessageSet
 
 import scala.collection.immutable.Map
-/**
- * Created by junius on 15-5-18.
- */
-
 
 object MySimpleComsuer {
   def main (args: Array[String]) {
@@ -24,11 +20,13 @@ object MySimpleComsuer {
 
 
     val topic = "test"
-    val partition = 1
+    val partition = 0
+
+    callOffsetsBefore()
 
     def callFetch() {
       val tp = new TopicAndPartition(topic, partition)
-      val info = new PartitionFetchInfo(0, 100) // offset and size
+      val info = new PartitionFetchInfo(0, 1000 * 1000 * 2) // offset and size 2M byte message.
 
       val para = Map[TopicAndPartition, PartitionFetchInfo](tp -> info)
 
@@ -42,17 +40,15 @@ object MySimpleComsuer {
 
     def callOffsetsBefore(): Unit = {
       val tp = TopicAndPartition(topic, partition)
-      val info = PartitionOffsetRequestInfo(0, 100) // time and maxNumOffsets
+      val info = PartitionOffsetRequestInfo(kafka.api.OffsetRequest.LatestTime, 1) // time and maxNumOffsets
 
-      val offetRequest = new OffsetRequest(requestInfo = Map[TopicAndPartition, PartitionOffsetRequestInfo](tp -> info))
+      val offsetRequest = new OffsetRequest(requestInfo = Map[TopicAndPartition, PartitionOffsetRequestInfo](tp -> info))
 
-      val response = consumer.getOffsetsBefore(offetRequest)
+      val response = consumer.getOffsetsBefore(offsetRequest)
       val msgSet = response.partitionErrorAndOffsets
       msgSet.foreach(msgAndOffset =>
         println(msgAndOffset._1.topic + msgAndOffset._1.partition + " " + msgAndOffset._2))
     }
-
-
 
   }
 }

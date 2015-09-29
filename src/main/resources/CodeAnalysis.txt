@@ -1,0 +1,17 @@
+####
+Kafka api the interface for outside request.
+
+## kafka server represent a broker, major components as following
+1. api
+2 socket server
+3. request handler pool
+4. offset manager
+5. replica manager
+6. consumer coordinator
+7. scheduler
+
+
+
+## internal concept
+Message Set. according to byte size the client wanted.
+Metadata Cache. cache info about topic , partition, replica

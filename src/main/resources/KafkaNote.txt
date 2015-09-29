@@ -6,6 +6,7 @@ partition just a part of a big topic. each broker has a partition.
 and the order of message within the same partition is guaranteed.
 but maybe disorder in multiply partition.
 
+cluster, include a lot of brokers.
 
 #### consistence
 consumer keep the status of message, not ack to broker for message.
@@ -46,8 +47,13 @@ def createMessageStreams[K, V](topicCountMap : scala.collection.Map[scala.Predef
  : scala.collection.Map[scala.Predef.String, scala.List[kafka.consumer.KafkaStream[K, V]]]
 
 
-
-
+## compare with Kestrel.
+Kestrel runs on a single machine and has no concept of clustering or
+failover or any other features you might expect in a queuing system.
+ Instead the clients need to be aware of the kestrel servers and balance
+ or partition the messages across the servers.
+ The simplicity of this system has some great benefits and is not unlike
+ how you would partition and balance against memcached or redis.
 
 
 
