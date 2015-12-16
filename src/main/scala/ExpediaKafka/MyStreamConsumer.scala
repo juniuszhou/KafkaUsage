@@ -18,10 +18,10 @@ object MyStreamConsumer {
     //Consumer.createJavaConsumerConnector()
 
     // create stream
-    val str = connector.createMessageStreams(Map[String, Int]("uis" -> 4))
+    val str = connector.createMessageStreams(Map[String, Int]("lpasSyntheticShops" -> 4))
 
     // get stream for test
-    val testStr = str.get("uis").get
+    val testStr = str.get("lpasSyntheticShops").get
 
     println(testStr.size)
 
